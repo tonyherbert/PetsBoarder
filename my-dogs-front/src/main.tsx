@@ -7,11 +7,11 @@ import Pet from "./components/Pet/Pet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages";
 import { CssBaseline, Grid } from "@mui/material";
-import Sidebar from "./components/Navbar/SideBar";
+import Sidebar from "./components/Navbar/MyProSidebar";
 import { useMode } from "./theme";
 import { ThemeProvider } from "@emotion/react";
 import { ProSidebarProvider } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
+import { MyProSidebarProvider } from "./components/Navbar/sidebarContext";
 
 interface IndexProps {
   isLoggedIn: boolean;
@@ -24,39 +24,28 @@ const Main: React.FC<IndexProps> = ({ isLoggedIn, setLoggedIn }) => {
   const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
       <Header isLoggedIn={isLoggedIn} />
       <BrowserRouter>
         {isLoggedIn ? (
-          <ProSidebarProvider>
-            <Grid container>
-              <Grid item>
-                <div
-                  style={{
-                    display: "flex",
-                    height: "100%",
-                    minHeight: "400px",
-                  }}
-                >
-                  <Sidebar />
-                </div>
-              </Grid>
-              <Grid item>
-                <Routes>
-                  <Route path="/dashboard" element={<Home />} />
-                  <Route
-                    path="/Pets"
-                    element={<PetList setLoggedIn={setLoggedIn} />}
-                  />
-                  <Route
-                    path="/Pet/:id"
-                    element={<Pet setLoggedIn={setLoggedIn} />}
-                  />
-                </Routes>
-              </Grid>
+          <Grid container>
+            <Grid item xs={2}>
+              <Sidebar />{" "}
             </Grid>
-          </ProSidebarProvider>
+            <Grid item xs={10}>
+              <Routes>
+                <Route path="/dashboard" element={<Home />} />
+                <Route
+                  path="/pets"
+                  element={<PetList setLoggedIn={setLoggedIn} />}
+                />
+                <Route
+                  path="/pet/:id"
+                  element={<Pet setLoggedIn={setLoggedIn} />}
+                />
+              </Routes>
+            </Grid>
+          </Grid>
         ) : (
           <Routes>
             <Route
@@ -72,7 +61,7 @@ const Main: React.FC<IndexProps> = ({ isLoggedIn, setLoggedIn }) => {
           </Routes>
         )}
       </BrowserRouter>
-    </ThemeProvider>
+    </>
   );
 };
 

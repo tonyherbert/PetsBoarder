@@ -1,0 +1,47 @@
+/* Styles pour la Pro Sidebar */
+
+.pro-sidebar {
+  background-color: #f7f7f7; /* Couleur de fond */
+  width: 250px; /* Largeur de la sidebar */
+  height: 100%; /* Hauteur de la sidebar */
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre de la sidebar */
+}
+
+/* Styles pour le contenu de la sidebar */
+
+.pro-sidebar-inner {
+  padding: 20px; /* Espace intérieur de la sidebar */
+}
+
+.pro-sidebar-title {
+  font-size: 18px; /* Taille du titre */
+  font-weight: bold;
+  margin-bottom: 20px; /* Marge inférieure du titre */
+}
+
+.pro-sidebar-menu {
+  list-style: none; /* Style de liste */
+  margin: 0;
+  padding: 0;
+  color: #444444;
+}
+
+.pro-sidebar-menu li {
+  margin-bottom: 10px; /* Marge inférieure des éléments de la liste */
+}
+
+.pro-sidebar-menu a {
+  color: #444444; /* Couleur du texte */
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px; /* Coins arrondis */
+}
+
+.pro-sidebar-menu a:hover {
+  background-color: #eaeaea; /* Couleur de fond lorsqu'on survole */
+}
