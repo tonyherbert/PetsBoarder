@@ -38,10 +38,6 @@ export class UserService {
         HttpStatus.UNAUTHORIZED,
       );
     }
-    return new HttpException(
-      'Incorrect username or password',
-      HttpStatus.UNAUTHORIZED,
-    );
   }
 
   async getOne(email): Promise<User> {

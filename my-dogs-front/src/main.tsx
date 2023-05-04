@@ -22,7 +22,8 @@ const Main: React.FC<IndexProps> = ({ isLoggedIn, setLoggedIn }) => {
   const [theme, colorMode] = useMode();
 
   const [isSidebar, setIsSidebar] = useState(true);
-
+  console.log(isLoggedIn);
+  console.log(localStorage);
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
@@ -48,12 +49,7 @@ const Main: React.FC<IndexProps> = ({ isLoggedIn, setLoggedIn }) => {
           </Grid>
         ) : (
           <Routes>
-            <Route
-              path="/"
-              element={
-                <SignIn setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />
-              }
-            />
+            <Route path="/" element={<SignIn setIsLoggedIn={setLoggedIn} />} />
             <Route
               path="/signup"
               element={<SignUp setIsLoggedIn={setLoggedIn} />}

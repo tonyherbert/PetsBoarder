@@ -39,7 +39,7 @@ const SignUp: React.FC<Props> = ({ setIsLoggedIn }) => {
       password: data.get("password"),
     };
     await axios.post("http://localhost:3002/api/v1/user/signup", form);
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (

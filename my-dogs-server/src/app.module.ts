@@ -26,9 +26,6 @@ import { isAuthenticated } from './app.middleware';
       secret,
       signOptions: { expiresIn: '2h' },
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-    }),
   ],
 
   controllers: [AppController, PetController, UserController],
