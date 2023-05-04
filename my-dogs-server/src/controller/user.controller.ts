@@ -18,14 +18,13 @@ import { JwtService } from '@nestjs/jwt';
 @Controller('/api/v1/user')
 export class UserController {
   constructor(
-    private readonly userServerice: UserService,
+    private readonly userService: UserService,
     private jwtService: JwtService,
   ) {}
 
   @Post('/signup')
   async Signup(@Res() response, @Body() user: User) {
-    console.log(user);
-    const newUSer = await this.userServerice.signup(user);
+    const newUSer = await this.userService.signup(user);
     return response.status(HttpStatus.CREATED).json({
       newUSer,
     });
@@ -33,7 +32,7 @@ export class UserController {
 
   @Post('/signin')
   async SignIn(@Res() response, @Body() user: User) {
-    const token = await this.userServerice.signin(user, this.jwtService);
+    const token = await this.userService.signin(user, this.jwtService);
     return response.status(HttpStatus.OK).json(token);
   }
 }

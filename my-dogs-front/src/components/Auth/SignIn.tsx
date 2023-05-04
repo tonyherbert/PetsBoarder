@@ -22,28 +22,24 @@ export default function SignIn({ setIsLoggedIn }: SignInProps): JSX.Element {
   const [errorMessage, setErrorMessage] = React.useState<any>("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const form = {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    try {
-      const { data } = await axios.post(
-        "http://localhost:3002/api/v1/user/signin",
-        form
-      );
+    const { data } = await axios.post(
+      "http://localhost:3002/api/v1/user/signin",
+      form
+    );
+    console.log("data", data);
+    if (data.status === parseInt("401")) {
+      setErrorMessage(data.response);
+    } else {
       localStorage.setItem("token", data.token);
       setIsLoggedIn(true);
       navigate("/dashboard");
-    } catch (error) {
-      const err = error as AxiosError;
-      if (err.response?.status === 401) {
-        setErrorMessage(err.response.data);
-      } else {
-        setErrorMessage("Something went wrong.");
-      }
     }
   };
 

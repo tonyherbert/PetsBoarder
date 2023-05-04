@@ -25,12 +25,14 @@ export class UserService {
     const foundUser = await this.userModel
       .findOne({ email: user.email })
       .exec();
+
     if (foundUser) {
       const { password } = foundUser;
       if (bcrypt.compare(user.password, password)) {
         const payload = { email: user.email };
+
         return {
-          token: jwt.sign(payload),
+          token: jwt.signAsync(payload),
         };
       }
       return new HttpException(
